@@ -13,21 +13,22 @@ int main() {
 	lines = 0, 
 	state = OUT;
 
+	// This solution does not account for punctuation
 	while((c = getchar()) != EOF) {
 		if(c == '\n') {
 			lines++;
-			state = OUT; 	
 		} 
-		else if(c == ' ' | c == '\t') {
-			if(state == IN) { 
-				words++;
+
+		if(c == '\n' | c == ' ' | c == '\t') {
+			if(state == IN) {
 				state = OUT;
 			}
 		}
-		else {
+		else if(state == OUT){
 			state = IN;
+			words++;
 		}
 	}
 
-	printf("\nThe total amount of words are: %d\n", words);
+	printf("\nWord Total: %d\n", words);
 }
